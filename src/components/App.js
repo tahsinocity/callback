@@ -1,22 +1,28 @@
 import '../App.css';
-import React, { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
-const ENDPOINT = 'http://127.0.0.1:8080';
+import React, { useEffect, useState } from 'react';
+import Video from './Video';
+import axios from 'axios';
 
 function App() {
-	const [response, setResponse] = useState('');
+	const [state, setState] = useState({ roomId: '' });
 
 	useEffect(() => {
-		const socket = socketIOClient(ENDPOINT);
-		socket.on('FromAPI', (data) => {
-			setResponse(data);
+		axios.get('http://localhost:8080/').then((data) => {
+			setState({
+				roomId: data.data,
+			});
 		});
 	}, []);
 
 	return (
-		<p>
-			It's <time dateTime={response}>{response}</time>
-		</p>
+		<div className="App">
+			<div className="App-header">
+				<h1>callback</h1>
+				<div id="video-grid">
+					<Video roomId={state} />
+				</div>
+			</div>
+		</div>
 	);
 }
 

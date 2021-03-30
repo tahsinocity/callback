@@ -9,36 +9,28 @@ const io = require('socket.io')(server, {
 });
 const { v4: uuidV4 } = require('uuid');
 const port = process.env.PORT || 8080;
-
+const cors = require('cors');
 //app.use(express.static(path.join(__dirname, 'build')));
-app.use(function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	next();
+app.use(cors());
+
+app.get('/', (req, res) => {
+	res.json(`${uuidV4()}`);
 });
 
-app.get('/', function (req, res) {
-	//res.sendFile(path.join(__dirname, 'build', 'index.html'));
-	res.send('I am alive...');
-});
-
-let interval;
+// app.get('/:room', (req, res) => {
+// 	res.render('room', { roomId: req.params.room });
+// });
 
 io.on('connection', (socket) => {
-	console.log('New client connected');
-	if (interval) {
-		clearInterval(interval);
-	}
-	interval = setInterval(() => getApiAndEmit(socket), 1000);
-	socket.on('disconnect', () => {
-		console.log('Client disconnected');
-		clearInterval(interval);
+	socket.on('join-room', (roomId, userId) => {
+		socket.join(roomId);
+		socket.to(roomId).broadcast.emit('user-connected', userId);
+
+		socket.on('disconnect', () => {
+			socket.to(roomId).broadcast.emit('user-disconnected', userId);
+		});
 	});
 });
-
-const getApiAndEmit = (socket) => {
-	const response = new Date();
-	socket.emit('FromAPI', response);
-};
 
 server.listen(port, (err) => {
 	if (err) {
