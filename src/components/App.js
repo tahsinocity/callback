@@ -1,10 +1,22 @@
 import '../App.css';
+import React, { useState, useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
+const ENDPOINT = 'http://127.0.0.1:8080';
 
 function App() {
+	const [response, setResponse] = useState('');
+
+	useEffect(() => {
+		const socket = socketIOClient(ENDPOINT);
+		socket.on('FromAPI', (data) => {
+			setResponse(data);
+		});
+	}, []);
+
 	return (
-		<div className="App">
-			<header className="App-header">hey everybody!</header>
-		</div>
+		<p>
+			It's <time dateTime={response}>{response}</time>
+		</p>
 	);
 }
 
