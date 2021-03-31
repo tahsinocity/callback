@@ -1,5 +1,4 @@
 const express = require('express');
-//const path = require('path');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
@@ -8,18 +7,22 @@ const io = require('socket.io')(server, {
 	},
 });
 const { v4: uuidV4 } = require('uuid');
-const port = process.env.PORT || 8080;
-const cors = require('cors');
-//app.use(express.static(path.join(__dirname, 'build')));
-app.use(cors());
+const port = process.env.PORT || 3000;
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-	res.json(`${uuidV4()}`);
+	res.render('pages/index');
 });
 
-// app.get('/:room', (req, res) => {
-// 	res.render('room', { roomId: req.params.room });
-// });
+app.get('/room', (req, res) => {
+	res.redirect(`/${uuidV4()}`);
+});
+
+app.get('/:room', (req, res) => {
+	res.render('pages/room', { roomId: req.params.room });
+});
 
 io.on('connection', (socket) => {
 	socket.on('join-room', (roomId, userId) => {

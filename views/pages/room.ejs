@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script>
+			const ROOM_ID = '<%= roomId %>';
+		</script>
+		<script
+			defer
+			src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"
+		></script>
+		<script src="/socket.io/socket.io.js" defer></script>
+		<script src="room.js" defer></script>
+
+		<title>callback</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="home">
+			<div id="video-grid"></div>
+			<div class="footer">
+				<button id="endCall" class="float-left submit-button">end call</button>
+				<button id="invite" class="float-left submit-button">
+					invite someone
+				</button>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			document.getElementById('endCall').onclick = function () {
+				location.href = '/';
+			};
+
+			document.getElementById('invite').onclick = function () {
+				alert('Room ID: ' + ROOM_ID);
+			};
+		</script>
+	</body>
+</html>

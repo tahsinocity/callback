@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>callback</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="home">
+			<h1>welcome to callback!</h1>
+			<button id="myButton" class="float-left submit-button">
+				call someone
+			</button>
+		</div>
+
+		<script type="text/javascript">
+			document.getElementById('myButton').onclick = function () {
+				location.href = '/room';
+			};
+		</script>
+	</body>
+</html>
