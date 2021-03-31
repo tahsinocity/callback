@@ -8,15 +8,28 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div class="home">
-			<h1>welcome to callback!</h1>
-			<button id="myButton" class="float-left submit-button">
-				call someone
-			</button>
+		<div class="container">
+			<h2>hi! 👋</h2>
+			<h1>welcome to callback</h1>
+
+			<form action="" id="join-us">
+				<div class="fields">
+					<span>
+						<input placeholder="Name" type="text" />
+					</span>
+					<br />
+					<span>
+						<input placeholder="Room Id" type="text" />
+					</span>
+				</div>
+				<div class="submit">
+					<input id="callSomeone" class="submit" value="call someone" type="button" />
+				</div>
+			</form>
 		</div>
 
 		<script type="text/javascript">
-			document.getElementById('myButton').onclick = function () {
+			document.getElementById('callSomeone').onclick = function () {
 				location.href = '/room';
 			};
 		</script>
