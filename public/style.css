@@ -8,7 +8,7 @@ body {
 	background: #3f0d12;
 }
 
-body {
+.container {
 	counter-reset: section;
 	text-align: center;
 }
@@ -107,11 +107,18 @@ input[type='button']:hover {
 	background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
 }
 
+.home {
+	display: flex;
+}
+
 #video-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 400px);
-	grid-auto-rows: 400px;
-	justify-items: center;
+	grid-template-columns: repeat(auto-fill, 300px);
+	grid-auto-rows: 300px;
+}
+
+.footer {
+	bottom: 0;
 }
 
 video {
@@ -119,17 +126,6 @@ video {
 	height: 100%;
 	object-fit: cover;
 	border-radius: 100%;
-	padding: 10px;
-}
-
-.home {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
 }
 
 .home button {
@@ -146,14 +142,11 @@ video {
 	box-sizing: border-box;
 	padding: 0 18px;
 	background-color: #220709;
-
 	color: #fff;
-	position: relative;
 	font-size: 20px;
 	margin: 4px 2px;
 	left: 9px;
 	top: 35px;
-	width: 220px;
 	cursor: pointer;
 }
 
@@ -162,4 +155,15 @@ video {
 	background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
 
 	color: white;
+}
+
+.messageBox {
+	border-right: 1px solid white;
+	color: white;
+	font-family: 'Pt Sans', helvetica, sans-serif;
+}
+
+.messageType {
+	position: fixed;
+	bottom: 0;
 }

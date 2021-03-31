@@ -33,6 +33,9 @@ io.on('connection', (socket) => {
 			socket.to(roomId).broadcast.emit('user-disconnected', userId);
 		});
 	});
+	socket.on('chat message', function (msg) {
+		io.emit('chat message', msg);
+	});
 });
 
 server.listen(port, (err) => {

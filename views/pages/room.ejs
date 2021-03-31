@@ -11,7 +11,6 @@
 			defer
 			src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"
 		></script>
-		<script src="/socket.io/socket.io.js" defer></script>
 		<script src="room.js" defer></script>
 
 		<title>callback</title>
@@ -22,12 +21,35 @@
 			<div id="video-grid"></div>
 			<div class="footer">
 				<button id="endCall" class="submit">end call</button>
-				<button id="invite" class="submit">
-					invite someone
-				</button>
+				<button id="invite" class="submit">invite someone</button>
 			</div>
-		</div>
+			<div class="messageBox">
+				<div class="container-fluid">
+					<ul class="list-group" id="messages"></ul>
+				</div>
+				<div class="messageType">
+					<form action="">
+						<input
+							type="text"
+							name=""
+							id="m"
+							class="form-control"
+							placeholder="Enter the message..."
+							value=""
+							required="required"
+							title=""
+						/>
+					</form>
+				</div>
 
+			</div>
+			
+		</div>
+		
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
 
 		<script type="text/javascript">
 			document.getElementById('endCall').onclick = function () {
@@ -37,6 +59,18 @@
 			document.getElementById('invite').onclick = function () {
 				alert('Room ID: ' + ROOM_ID);
 			};
+
+			var socketio = io('/');
+			$('form').submit(function () {
+				var msg = $('#m').val();
+				if (msg.length > 0) socket.emit('chat message', msg);
+				else console.log('Enter a valid msg :)');
+				$('#m').val('');
+				return false;
+			});
+			socketio.on('chat message', function (msg) {
+				$('#messages').append('<p class="list-group-item"> Tahsin: ' + msg + '</p>');
+			});
 		</script>
 	</body>
 </html>
