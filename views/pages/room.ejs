@@ -14,15 +14,23 @@
 		<script src="room.js" defer></script>
 
 		<title>callback</title>
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="room.css" />
 	</head>
 	<body>
-		<div class="home">
-			<div id="video-grid"></div>
-			<div class="footer">
-				<button id="endCall" class="submit">end call</button>
-				<button id="invite" class="submit">invite someone</button>
+		<div class="nav">
+			callback
+		</div>
+		<div class="roomContainer">
+			<div class="leftSide">
+				<div class="videoSide">
+					<div id="video-grid"></div>
+				</div>
+				<div class="footer">
+					<button id="endCall" class="submit">end call</button>
+					<button id="invite" class="submit">invite someone</button>
+				</div>
 			</div>
+
 			<div class="messageBox">
 				<div class="container-fluid">
 					<ul class="list-group" id="messages"></ul>
@@ -41,11 +49,9 @@
 						/>
 					</form>
 				</div>
-
 			</div>
 			
 		</div>
-		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -60,7 +66,7 @@
 				alert('Room ID: ' + ROOM_ID);
 			};
 
-			var socketio = io('/');
+			const socketio = io('/');
 			$('form').submit(function () {
 				var msg = $('#m').val();
 				if (msg.length > 0) socket.emit('chat message', msg);
@@ -69,7 +75,9 @@
 				return false;
 			});
 			socketio.on('chat message', function (msg) {
-				$('#messages').append('<p class="list-group-item"> Tahsin: ' + msg + '</p>');
+				$('#messages').append(
+					'<p class="list-group-item"> Tahsin: ' + msg + '</p>'
+				);
 			});
 		</script>
 	</body>

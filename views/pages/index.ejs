@@ -15,7 +15,7 @@
 			<form action="" id="join-us">
 				<div class="fields">
 					<span>
-						<input placeholder="Name" type="text" />
+						<input class="usernameInput" placeholder="Name" type="text" />
 					</span>
 					<br />
 					<span>
@@ -27,7 +27,7 @@
 				</div>
 			</form>
 		</div>
-
+		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
 			document.getElementById('callSomeone').onclick = function () {
 				location.href = '/room';
