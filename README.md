@@ -1,3 +1,3 @@
 # callback
 
-A video calling app
+A video calling and chatting app
