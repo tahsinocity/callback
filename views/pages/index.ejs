@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>callback</title>
-		<link rel="icon" type="image/png" href="img/favicon.ico"/>
+		<link rel="icon" type="image/png" href="img/favicon.ico" />
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
@@ -13,7 +13,7 @@
 			<h2>hi! 👋</h2>
 			<h1>welcome to callback</h1>
 
-			<form action="" id="join-us">
+			<form action="" id="join-us" class="roomCreate">
 				<div class="fields">
 					<span>
 						<input class="usernameInput" placeholder="Name" type="text" />
@@ -24,10 +24,16 @@
 					</span>
 				</div>
 				<div class="submit">
-					<input id="callSomeone" class="submit" value="call someone" type="button" />
+					<input
+						id="callSomeone"
+						class="submit"
+						value="call someone"
+						type="button"
+					/>
 				</div>
 			</form>
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
 			document.getElementById('callSomeone').onclick = function () {
